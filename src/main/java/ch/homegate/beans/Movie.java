@@ -1,22 +1,33 @@
 package ch.homegate.beans;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+import java.util.Date;
 
-@Document(collection="movie")
+@Document(collection="movies")
 public class Movie {
 
     @Id
     private String id;
     private String title;
     private String category;
-    private String releaseData;
     private String mainActor;
+    @JsonFormat(pattern = "dd/mm/yyyy" )
+    private Date releaseDate;
 
     //TODO Preview ICON !!!
 
+    public Movie() {
+    }
+
+    public Movie(String title, String category, String mainActor, Date releaseDate) {
+        this.title = title;
+        this.category = category;
+        this.mainActor = mainActor;
+        this.releaseDate = releaseDate;
+    }
 
     public String getId() {
         return id;
@@ -42,19 +53,19 @@ public class Movie {
         this.category = category;
     }
 
-    public String getReleaseData() {
-        return releaseData;
-    }
-
-    public void setReleaseData(String releaseData) {
-        this.releaseData = releaseData;
-    }
-
     public String getMainActor() {
         return mainActor;
     }
 
     public void setMainActor(String mainActor) {
         this.mainActor = mainActor;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }
