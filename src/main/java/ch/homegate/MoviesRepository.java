@@ -11,4 +11,9 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "movies", path = "movies")
 public interface MoviesRepository extends MongoRepository<Movie, String> {
 
+    List<Movie> findByTitle(@Param("title") String title);
+    List<Movie> findByMainActor(@Param("name") String name);
+    List<Movie> findByCategory(@Param("category") String category);
+    List<Movie> findByReleaseDate(@Param("releaseDate") Date releaseDate);
+
 }
