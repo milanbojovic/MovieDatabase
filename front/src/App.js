@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
 
-      this.state = {
-         data:
+      this.state = {movies: []};
+      /*this.state = {
+         //movies:
          [
              {
                      "_id" : "ObjectId(59eef692d0be376dbe31f0f0)",
@@ -33,8 +35,19 @@ class App extends Component {
                      "releaseDate" : "ISODate(1975-08-11T23:00:00Z)"
              }
          ]
-      }
+      }*/
    }
+
+   componentDidMount() {
+       this.MovieList();
+     }
+
+     MovieList() {
+           axios.get(this.props.url + "/movies")
+             .then(response => {
+                           this.setState({movies: response.data._embedded.movies});
+                         });
+         }
 
   render() {
     return (
@@ -50,15 +63,15 @@ class App extends Component {
         <table class="tg">
             <tbody>
                 <tr>
-                    <th class="tg-l2oz">Id</th>
+                    <th class="tg-l2oz">ID</th>
                     <th class="tg-9hbo">Title</th>
                     <th class="tg-9hbo">Category</th>
                     <th class="tg-9hbo">Release Date</th>
                     <th class="tg-9hbo">Main actor</th>
                     <th class="tg-9hbo">Preview</th>
                 </tr>
-              {this.state.data.map((movie, i) => <TableRow key = {i}
-                 data = {movie} />)}
+              {this.state.movies.map((movie, i) => <TableRow key = {i}
+                 movies = {movie} />)}
             </tbody>
         </table>
       </div>
@@ -70,12 +83,12 @@ class TableRow extends React.Component {
    render() {
       return (
           <tr>
-             <td class="tg-6k2t">{this.props.data._id}</td>
-             <td class="tg-6k2t">{this.props.data.title}</td>
-             <td class="tg-6k2t">{this.props.data.category}</td>
-             <td class="tg-6k2t">{this.props.data.releaseDate}</td>
-             <td class="tg-6k2t">{this.props.data.mainActor}</td>
-             <td class="tg-6k2t">{this.props.data.preview}</td>
+             <td class="tg-6k2t">{this.props.movies._id}</td>
+             <td class="tg-6k2t">{this.props.movies.title}</td>
+             <td class="tg-6k2t">{this.props.movies.category}</td>
+             <td class="tg-6k2t">{this.props.movies.releaseDate}</td>
+             <td class="tg-6k2t">{this.props.movies.mainActor}</td>
+             <td class="tg-6k2t">{this.props.movies.preview}</td>
            </tr>
       );
    }
