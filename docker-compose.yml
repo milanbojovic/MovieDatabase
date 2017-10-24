@@ -1,0 +1,13 @@
+version: '2'
+services:
+    mongodb:
+        image: mongo:3.2.6
+        ports:
+            - "27017:27017"        
+
+    movieportal:
+        build: ./backend/
+        ports:
+            - "9090:8080"
+        links:
+            - mongodb
