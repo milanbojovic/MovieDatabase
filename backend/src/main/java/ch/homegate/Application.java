@@ -28,8 +28,8 @@ public class Application implements CommandLineRunner {
         System.out.println("Importing data to mongodb");
 
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-        movieRepo.save(new Movie("Shawshank Redemption", "Drama", "Tim Robbins", df.parse("14/10/1994")));
-        movieRepo.save(new Movie("The Godfather I", "Crime, Drama", "Marlon Brando", df.parse("24/03/1972")));
-        movieRepo.save(new Movie("The Godfather II", "Drama", "Marlon Brando", df.parse("20/12/1974")));
+        movieRepo.save(new Movie("MV001", "Shawshank Redemption", "Drama", "Tim Robbins", df.parse("14/10/1994")));
+        movieRepo.save(new Movie("MV002", "The Godfather I", "Crime, Drama", "Marlon Brando", df.parse("24/03/1972")));
+        movieRepo.save(new Movie("MV003", "The Godfather II", "Drama", "Marlon Brando", df.parse("20/12/1974")));
     }
 }

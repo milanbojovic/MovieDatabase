@@ -11,6 +11,7 @@ public class Movie {
 
     @Id
     private String id;
+    private String movieId;
     private String title;
     private String category;
     private String mainActor;
@@ -22,7 +23,8 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, String category, String mainActor, Date releaseDate) {
+    public Movie(String movieId, String title, String category, String mainActor, Date releaseDate) {
+        this.movieId = movieId;
         this.title = title;
         this.category = category;
         this.mainActor = mainActor;
@@ -35,6 +37,14 @@ public class Movie {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {
