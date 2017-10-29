@@ -5,9 +5,16 @@ services:
         ports:
             - "27017:27017"        
 
-    movieportal:
+    mp_backend:
         build: ./backend/
         ports:
             - "9090:8080"
         links:
             - mongodb
+
+    mp_frontend:
+        build: ./front/
+        ports:
+            - "3000:3000"
+        links:
+            - mp_backend

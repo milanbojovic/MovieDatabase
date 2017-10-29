@@ -1,13 +1,16 @@
 #Phase I [VCS] - Fetch code from github
-FROM alpine/git as VCS
-WORKDIR /tmp
-RUN git clone https://github.com/milanbojovic/MovieDatabase.git
+#FROM alpine/git as VCS
+#WORKDIR /tmp
+#RUN git clone https://github.com/milanbojovic/MovieDatabase.git
+
 
 #Phase II [BUILDER] - Use Maven for packaging jar file
 FROM maven as BUILDER
 WORKDIR /code
+#Copy source code from disk ! remove this later
+COPY . /code
 # Copy source code from PHASE I into current work dir
-COPY --from=VCS /tmp/MovieDatabase/backend/ .
+#COPY --from=VCS /tmp/MovieDatabase/backend/ .
 RUN mvn package 
 
 #Phase III [RUNNER] - Use JRE image for running jar file
